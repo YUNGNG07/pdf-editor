@@ -1,21 +1,13 @@
-from PyPDF2 import PdfWriter
+from PyPDF2 import PdfMerger
 import os
 
-def merge_pdf(filename, file_directory, output_directory):
-    """
-    Merge PDFs
-    """
-    merger = PdfWriter()
+merger = PdfMerger()
+file_directory = r'C:/Users/yungng07/Documents/PDF-Editor/'
 
-    if file_directory:
-        for pdf in os.listdir(file_directory):
-            if pdf.endswith('.pdf'):
-                print(pdf)
-                # Reference: https://stackoverflow.com/questions/65162124/python3-filenotfounderror-errno-2-no-such-file-or-directory-first-filename
-                # os.listdir() returns relative paths, need to reconstruct absolute path to open the files
-                pdf_directory = os.path.join(file_directory, pdf)
-                merger.append(pdf_directory)
+files = [f for f in os.listdir(file_directory) if f.endswith('.pdf')]
 
-    output_destination = os.path.join(output_directory, filename)
-    merger.write(output_destination)
-    merger.close()
+for pdf in files:
+    merger.append(pdf)
+
+with open(os.path.join(file_directory, 'python_cheatsheets.pdf'), 'wb') as append:
+    merger.write(append)
