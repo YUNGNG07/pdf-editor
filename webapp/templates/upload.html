@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Upload</title>
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css" integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A==" crossorigin="anonymous" referrerpolicy="no-referrer" /> -->
+</head>
+<body>
+    <h1>Upload your images:</h1>
+    <form action="{{ url_for('index') }}" class="dropzone"></form>
+
+    <script src="https://unpkg.com/dropzone@5/dist/min/dropzone.min.js"></script>
+    <link
+    rel="stylesheet"
+    href="https://unpkg.com/dropzone@5/dist/min/dropzone.min.css"
+    type="text/css"
+    />
+
+    <script>
+    // Dropzone has been added as a global variable.
+    const dropzone = new Dropzone("div.my-dropzone", { url: "/file/post" });
+    </script>
+
+    <!--
+    {% for file in upfiles %}
+        <img src="{{ url_for('upload', filename=file) }}", alt="{{ file }}" style="width: 64px;">
+    {% endfor %} -->
+
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js" integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
+    <br>
+    <input type="submit" value="Merge PDF" name="file" />
+</body>
+</html>
